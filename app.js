@@ -57,7 +57,7 @@ app.get('/select:id?', function(req, ans){
 
 //app.get('/delete', function(req, ans){ ans.render('delete');});
 //app.get('/update', function(req, ans){ ans.render('udpate');});
-
+/*
 app.post('/controllerForm',urlEncodeParser , function(req, ans){
     sql.query('INSERT INTO USER VALUES ( ?, ?, ?)', [req.body.id, req.body.name, req.body.age]);
     ans.render('controllerForm', {name:req.body.name});
@@ -78,7 +78,7 @@ app.post("/controllerUpdate", urlEncodeParser, function(req, ans) {
     sql.query("update user set name=?,age=? where id=?", [req.body.name, req.body.age, req.body.id]);
     ans.render('controllerUpdate');
 });
-
+*/
 //start server with requiriment and answer
 app.listen(port, function(req, ans){console.log('Server is running...');});
 
