@@ -41,14 +41,14 @@ app.get('/insert', function(req, ans){ans.render('insert');});
 app.get('/select:id?', function(req, ans){ 
     if(!req.params.id){
         sql.getConnection(function(err, connection){
-            connection.query('SELECT * FROM user ORDER BY id asc', function(err, results, fields){
-                        ans.render('select', {data: results});
-                    });
+                connection.query('SELECT * FROM user ORDER BY id asc', function(err, results, fields){
+                ans.render('select', {data: results});
+            });
         });
     } else {
         sql.getConnection(function(err, connection){
-            connection.query('SELECT * FROM user WHERE id = ? ORDER BY id asc', [req.params.id], function(err, results, fields){
-                        ans.render('select', {data: results});
+                connection.query('SELECT * FROM user WHERE id = ? ORDER BY id asc', [req.params.id], function(err, results, fields){
+                ans.render('select', {data: results});
             });
         });
     }
@@ -57,31 +57,35 @@ app.get('/select:id?', function(req, ans){
 //app.get('/delete', function(req, ans){ ans.render('delete');});
 //app.get('/update', function(req, ans){ ans.render('udpate');});
 
-/*
+
 app.post('/controllerForm',urlEncodeParser , function(req, ans){
     sql.query('INSERT INTO USER VALUES ( ?, ?, ?)', [req.body.id, req.body.name, req.body.age]);
     ans.render('controllerForm', {name:req.body.name});
 });
-*/
+
 app.get('/delete/:id', function(req, res){
     sql.getConnection(function(err, connection){
         sql.connection('DELETE FROM user WHERE id=?', [req.params.id]);
         res.render('delete');
     }); 
 });
-/*
+
 app.get("/update/:id", function(req, ans) {
-    sql.query("SELECT * FROM user WHERE id=?", [req.params.id], function(err,results, fields){
-        ans.render('update', {id:req.params.id, name: results[0].name, age: results[0].age});
-    });
+    sql.getConnection(function(err, connection){
+            sql.connection("SELECT * FROM user WHERE id=?", [req.params.id], function(err,results, fields){
+            ans.render('update', {id:req.params.id, name: results[0].name, age: results[0].age});
+        });
+    }); 
 });
 
 app.post("/controllerUpdate", urlEncodeParser, function(req, ans) {
-    sql.query("update user set name=?,age=? where id=?", [req.body.name, req.body.age, req.body.id]);
-    ans.render('controllerUpdate');
+    sql.getConnection(function(err, connection){
+        sql.connection("update user set name=?,age=? where id=?", [req.body.name, req.body.age, req.body.id]);
+        ans.render('controllerUpdate');
+    });
 });
 
-*/
+
 //start server with requiriment and answer
 app.listen(port, function(req, ans){console.log('Server is running...');});
 
