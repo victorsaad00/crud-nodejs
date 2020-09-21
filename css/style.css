@@ -5,7 +5,7 @@ a{
     color: black;
 }
 img {
-    max-width: 5%;
+    max-width: 15%;
     height: auto;
 }
 table {
@@ -15,4 +15,4 @@ table {
 table td {
     width: 25%;
 }
-table tr:first-child{background: #333; color: black; font-weight: bold; padding: 15px; }
+table tr:first-child{background: #333; color: black; font-weight: bold; padding: 20px; }
