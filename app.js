@@ -14,6 +14,8 @@ const sql = mysql.createPool({
     database: 'heroku_9b6d3ff2ea9f1ac'
 });
 
+let port = process.env.PORT || 3000;
+
 app.use('/img', express.static('img'));
 app.use('/css', express.static('css'));
 app.use('/js', express.static('js'));
@@ -78,7 +80,7 @@ app.post("/controllerUpdate", urlEncodeParser, function(req, ans) {
 });
 
 //start server with requiriment and answer
-app.listen(3000, function(req, ans){console.log('Server is running...');});
+app.listen(port, function(req, ans){console.log('Server is running...');});
 
 
 
