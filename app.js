@@ -62,12 +62,14 @@ app.post('/controllerForm',urlEncodeParser , function(req, ans){
     sql.query('INSERT INTO USER VALUES ( ?, ?, ?)', [req.body.id, req.body.name, req.body.age]);
     ans.render('controllerForm', {name:req.body.name});
 });
-
+*/
 app.get('/delete/:id', function(req, res){
-    sql.query('DELETE FROM user WHERE id=?', [req.params.id]);
-    res.render('delete');
+    sql.getConnection(function(err, connection){
+        sql.connection('DELETE FROM user WHERE id=?', [req.params.id]);
+        res.render('delete');
+    }); 
 });
-
+/*
 app.get("/update/:id", function(req, ans) {
     sql.query("SELECT * FROM user WHERE id=?", [req.params.id], function(err,results, fields){
         ans.render('update', {id:req.params.id, name: results[0].name, age: results[0].age});
@@ -78,9 +80,8 @@ app.post("/controllerUpdate", urlEncodeParser, function(req, ans) {
     sql.query("update user set name=?,age=? where id=?", [req.body.name, req.body.age, req.body.id]);
     ans.render('controllerUpdate');
 });
+
 */
-
-
 //start server with requiriment and answer
 app.listen(port, function(req, ans){console.log('Server is running...');});
 
